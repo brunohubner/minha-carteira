@@ -1,11 +1,10 @@
+import { ReactNode } from "react"
 import { Container } from "./styles"
 
-interface IProps {}
+interface IProps {
+    children?: ReactNode
+}
 
-export default function Content({}: IProps) {
-    return (
-        <Container>
-            <h1>Content</h1>
-        </Container>
-    )
+export default function Content({ children }: IProps) {
+    return <Container>{children}</Container>
 }

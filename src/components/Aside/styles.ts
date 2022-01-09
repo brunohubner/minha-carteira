@@ -8,7 +8,7 @@ export const Container = styled.aside`
 
 export const Header = styled.header`
     display: flex;
-    padding-left: 20px;
+    padding-left: 24px;
     align-items: center;
     height: 70px;
 `
@@ -30,7 +30,7 @@ export const MenuContainer = styled.nav`
 export const MenuItem = styled.a`
     display: flex;
     align-items: center;
-    padding: 12px 20px;
+    padding: 12px 24px;
     color: ${props => props.theme.colors.info};
 
     > svg {

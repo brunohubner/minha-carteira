@@ -1,11 +1,12 @@
-import Layout from "../../components/Layout"
+import ContentHeader from "../../components/ContentHeader"
+import { Container } from "./styles"
 
 interface IProps {}
 
 export default function Dashboard({}: IProps) {
     return (
-        <div>
-            <Layout></Layout>
-        </div>
+        <Container>
+            <ContentHeader></ContentHeader>
+        </Container>
     )
 }
