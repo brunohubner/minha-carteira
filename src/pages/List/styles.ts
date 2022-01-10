@@ -3,3 +3,37 @@ import styled from "styled-components"
 export const Container = styled.section``
 
 export const Content = styled.section``
+
+export const Filters = styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 24px;
+
+    .tag-filter {
+        background: none;
+        font-size: 1rem;
+        color: ${props => props.theme.colors.white};
+        margin: 0 10px;
+        transition: opacity 0.1s;
+
+        &:hover {
+            opacity: 0.7;
+        }
+
+        &::after {
+            content: "";
+            display: block;
+            width: 55px;
+            margin: 0 auto;
+        }
+    }
+
+    .tag-filter-recurrent::after {
+        border-bottom: 10px solid ${props => props.theme.colors.warning};
+    }
+
+    .tag-filter-eventual::after {
+        border-bottom: 10px solid ${props => props.theme.colors.success};
+    }
+`

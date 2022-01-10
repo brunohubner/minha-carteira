@@ -1,20 +1,27 @@
 import { Container } from "./styles"
 
-interface IOptions {
+export interface ISelectOptions {
     value: string | number
     label: string
+    selected?: boolean
 }
 
 interface IProps {
-    options: IOptions[]
+    options: ISelectOptions[]
 }
 
 export default function SelectInput({ options }: IProps) {
     return (
         <Container>
             <select>
-                {options.map(option => (
-                    <option value={option.value}>{option.label}</option>
+                {options.map((option, i) => (
+                    <option
+                        key={`${i}_${option.value}`}
+                        selected={option?.selected}
+                        value={option.value}
+                    >
+                        {option.label}
+                    </option>
                 ))}
             </select>
         </Container>
