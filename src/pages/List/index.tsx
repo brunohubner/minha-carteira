@@ -22,70 +22,60 @@ export default function List({}: IProps) {
                 <HistoryFinanceCard
                     title="Conta de Luz"
                     subtitle="10/01/2022"
-                    cardColor="#313862"
                     tagColor="#E44C4E"
                     amount="R$ 200,00"
                 ></HistoryFinanceCard>
                 <HistoryFinanceCard
                     title="Conta de Luz"
                     subtitle="10/01/2022"
-                    cardColor="#313862"
                     tagColor="#E44C4E"
                     amount="R$ 200,00"
                 ></HistoryFinanceCard>
                 <HistoryFinanceCard
                     title="Conta de Luz"
                     subtitle="10/01/2022"
-                    cardColor="#313862"
                     tagColor="#E44C4E"
                     amount="R$ 200,00"
                 ></HistoryFinanceCard>
                 <HistoryFinanceCard
                     title="Conta de Luz"
                     subtitle="10/01/2022"
-                    cardColor="#313862"
                     tagColor="#E44C4E"
                     amount="R$ 200,00"
                 ></HistoryFinanceCard>
                 <HistoryFinanceCard
                     title="Conta de Luz"
                     subtitle="10/01/2022"
-                    cardColor="#313862"
                     tagColor="#E44C4E"
                     amount="R$ 200,00"
                 ></HistoryFinanceCard>
                 <HistoryFinanceCard
                     title="Conta de Luz"
                     subtitle="10/01/2022"
-                    cardColor="#313862"
                     tagColor="#E44C4E"
                     amount="R$ 200,00"
                 ></HistoryFinanceCard>
                 <HistoryFinanceCard
                     title="Conta de Luz"
                     subtitle="10/01/2022"
-                    cardColor="#313862"
                     tagColor="#E44C4E"
                     amount="R$ 200,00"
                 ></HistoryFinanceCard>
                 <HistoryFinanceCard
                     title="Conta de Luz"
                     subtitle="10/01/2022"
-                    cardColor="#313862"
                     tagColor="#E44C4E"
                     amount="R$ 200,00"
                 ></HistoryFinanceCard>
                 <HistoryFinanceCard
                     title="Conta de Luz"
                     subtitle="10/01/2022"
-                    cardColor="#313862"
                     tagColor="#E44C4E"
                     amount="R$ 200,00"
                 ></HistoryFinanceCard>
                 <HistoryFinanceCard
                     title="Conta de Luz"
                     subtitle="10/01/2022"
-                    cardColor="#313862"
                     tagColor="#E44C4E"
                     amount="R$ 200,00"
                 ></HistoryFinanceCard>

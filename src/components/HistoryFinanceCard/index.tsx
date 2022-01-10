@@ -4,19 +4,17 @@ interface IProps {
     title: string
     subtitle: string
     tagColor: string
-    cardColor: string
     amount: string
 }
 
 export default function HistoryFinanceCard({
     amount,
-    cardColor,
     subtitle,
     tagColor,
     title
 }: IProps) {
     return (
-        <Container color={cardColor}>
+        <Container>
             <Tag color={tagColor} />
             <div>
                 <span>{title}</span>
