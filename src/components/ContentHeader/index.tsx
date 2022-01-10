@@ -1,17 +1,19 @@
+import { ReactNode } from "react"
 import { Container, Controllers, TitleContainer } from "./styles"
 
-interface IProps {}
+interface IProps {
+    title: string
+    lineColor: string
+    children?: ReactNode
+}
 
-export default function ContentHeader({}: IProps) {
+export default function ContentHeader({ title, lineColor, children }: IProps) {
     return (
         <Container>
-            <TitleContainer>
-                <h1>Dashboard</h1>
+            <TitleContainer lineColor={lineColor}>
+                <h1>{title}</h1>
             </TitleContainer>
-            <Controllers>
-                <button type="submit">Button A</button>
-                <button type="submit">Button B</button>
-            </Controllers>
+            <Controllers>{children}</Controllers>
         </Container>
     )
 }
