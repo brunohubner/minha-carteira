@@ -1,9 +1,14 @@
+import { useMemo } from "react"
+import { useParams } from "react-router-dom"
 import ContentHeader from "../../components/ContentHeader"
 import HistoryFinanceCard from "../../components/HistoryFinanceCard"
 import SelectInput, { ISelectOptions } from "../../components/SelectInput"
 import { Container, Content, Filters } from "./styles"
 
-interface IProps {}
+interface IPageTitle {
+    label: string
+    lineColor: string
+}
 
 const currentYear = new Date().getFullYear()
 const currentMonth = new Date().getMonth() + 1
@@ -38,10 +43,26 @@ for (let year = currentYear - 5; year <= currentYear + 5; year++) {
     })
 }
 
-export default function List({}: IProps) {
+export default function List() {
+    const { type } = useParams()
+
+    const title = useMemo(() => {
+        const pageTitle: IPageTitle =
+            type === "entry-balance"
+                ? {
+                      label: "Entradas",
+                      lineColor: "#F7931B"
+                  }
+                : {
+                      label: "Saídas",
+                      lineColor: "#4E41F0"
+                  }
+        return pageTitle
+    }, [type])
+
     return (
         <Container>
-            <ContentHeader title="Entradas" lineColor="#F7931B">
+            <ContentHeader title={title.label} lineColor={title.lineColor}>
                 <SelectInput options={months}></SelectInput>
                 <SelectInput options={years}></SelectInput>
             </ContentHeader>

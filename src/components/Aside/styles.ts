@@ -26,19 +26,3 @@ export const MenuContainer = styled.nav`
     display: flex;
     flex-direction: column;
 `
-
-export const MenuItem = styled.a`
-    display: flex;
-    align-items: center;
-    padding: 12px 24px;
-    color: ${props => props.theme.colors.info};
-
-    > svg {
-        font-size: 1.5rem;
-        margin-right: 10px;
-    }
-
-    &:hover {
-        background-color: ${props => props.theme.colors.primary};
-    }
-`
