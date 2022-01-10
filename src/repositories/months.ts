@@ -1,6 +1,4 @@
-const currentMonth = new Date().getMonth() + 1
-
-const baseMonths = [
+export const months = [
     { value: 1, label: "Janeiro" },
     { value: 2, label: "Fevereiro" },
     { value: 3, label: "Março" },
@@ -14,8 +12,3 @@ const baseMonths = [
     { value: 11, label: "Novembro" },
     { value: 12, label: "Dezembro" }
 ]
-
-export const months = baseMonths.map(month => ({
-    ...month,
-    selected: month.value === currentMonth
-}))

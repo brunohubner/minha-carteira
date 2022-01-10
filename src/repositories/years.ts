@@ -4,11 +4,10 @@ const currentYear = new Date().getFullYear()
 
 const years: ISelectOptions[] = []
 
-for (let year = currentYear - 5; year <= currentYear + 5; year++) {
+for (let year = currentYear - 5; year <= currentYear + 1; year++) {
     years.push({
         value: year,
-        label: `${year}`,
-        selected: year === currentYear
+        label: `${year}`
     })
 }
 

@@ -13,8 +13,16 @@ export default function Dashboard({}: IProps) {
     return (
         <Container>
             <ContentHeader title="Dashboard" lineColor="#E44C4E">
-                <SelectInput options={options}></SelectInput>
-                <SelectInput options={options}></SelectInput>
+                <SelectInput
+                    defaultValue={""}
+                    onChange={() => {}}
+                    options={options}
+                ></SelectInput>
+                <SelectInput
+                    defaultValue={""}
+                    onChange={() => {}}
+                    options={options}
+                ></SelectInput>
             </ContentHeader>
         </Container>
     )

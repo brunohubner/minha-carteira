@@ -27,6 +27,13 @@ interface IData {
 
 export default function List() {
     const [data, setData] = useState<IData[]>([])
+    const [monthSelected, setMonthSelected] = useState(
+        String(new Date().getMonth() + 1)
+    )
+    const [yearSelected, setYearSelected] = useState(
+        String(new Date().getFullYear())
+    )
+
     const { type } = useParams()
 
     const title = useMemo(() => {
@@ -47,26 +54,39 @@ export default function List() {
         return type === "entry-balance" ? gains : expenses
     }, [type])
 
-    function normalizeData() {
-        setData(
-            listData.map(item => ({
-                id: String(Math.random() * listData.length),
-                description: item.description,
-                amountFormatted: formatCurrency(item.amount),
-                dateFormatted: formatDate(item.date),
-                frequency: item.frequency,
-                tagColor: item.frequency === "recurrent" ? "#4E41F0" : "#E44C4E"
-            }))
-        )
-    }
+    useEffect(() => {
+        const filteredData = listData.filter(item => {
+            const date = new Date(item.date)
+            const year = String(date.getFullYear())
+            const month = String(date.getMonth() + 1)
+            return month === monthSelected && year === yearSelected
+        })
 
-    useEffect(normalizeData, [listData])
+        const formattedData = filteredData.map(item => ({
+            id: String(Math.random() * listData.length),
+            description: item.description,
+            amountFormatted: formatCurrency(item.amount),
+            dateFormatted: formatDate(item.date),
+            frequency: item.frequency,
+            tagColor: item.frequency === "recurrent" ? "#4E41F0" : "#E44C4E"
+        }))
+
+        setData(formattedData)
+    }, [listData, monthSelected, yearSelected, data.length])
 
     return (
         <Container>
             <ContentHeader title={title.label} lineColor={title.lineColor}>
-                <SelectInput options={months}></SelectInput>
-                <SelectInput options={years}></SelectInput>
+                <SelectInput
+                    defaultValue={monthSelected}
+                    onChange={e => setMonthSelected(e.target.value)}
+                    options={months}
+                ></SelectInput>
+                <SelectInput
+                    defaultValue={yearSelected}
+                    onChange={e => setYearSelected(e.target.value)}
+                    options={years}
+                ></SelectInput>
             </ContentHeader>
 
             <Filters>
