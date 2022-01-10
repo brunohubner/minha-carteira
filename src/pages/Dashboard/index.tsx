@@ -2,9 +2,7 @@ import ContentHeader from "../../components/ContentHeader"
 import SelectInput from "../../components/SelectInput"
 import { Container } from "./styles"
 
-interface IProps {}
-
-export default function Dashboard({}: IProps) {
+export default function Dashboard() {
     const options = [
         { label: "Bruno", value: 1 },
         { label: "Ana", value: 2 },

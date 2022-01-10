@@ -8,9 +8,7 @@ import {
 import logoImg from "../../assets/logo.svg"
 import MenuItem from "../MenuItem"
 
-interface IProps {}
-
-export default function Aside({}: IProps) {
+export default function Aside() {
     return (
         <Container>
             <Header>

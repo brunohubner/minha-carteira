@@ -3,9 +3,7 @@ import { Container, ToggleLabel, ToggleSelector } from "./styles"
 
 type Theme = "light" | "dark"
 
-interface IProps {}
-
-export default function Toggle({}: IProps) {
+export default function Toggle() {
     const [theme, setTheme] = useState<Theme>("dark")
 
     return (

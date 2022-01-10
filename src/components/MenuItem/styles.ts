@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const Anchor = styled.a`
+export const Anchor = styled.div`
     display: flex;
     align-items: center;
     padding: 12px 24px;

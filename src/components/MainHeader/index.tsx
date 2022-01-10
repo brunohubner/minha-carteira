@@ -3,9 +3,7 @@ import emojis from "../../utils/emojis"
 import Toggle from "../Toggle"
 import { Container, Profile, Username, Wellcome } from "./styles"
 
-interface IProps {}
-
-export default function MainHeader({}: IProps) {
+export default function MainHeader() {
     const emoji = useMemo(() => {
         const index = Math.floor(Math.random() * emojis.length)
         return emojis[index]
