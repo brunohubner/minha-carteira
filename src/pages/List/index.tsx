@@ -1,8 +1,12 @@
-import { useMemo } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useParams } from "react-router-dom"
 import ContentHeader from "../../components/ContentHeader"
 import HistoryFinanceCard from "../../components/HistoryFinanceCard"
-import SelectInput, { ISelectOptions } from "../../components/SelectInput"
+import SelectInput from "../../components/SelectInput"
+import expenses from "../../repositories/expenses"
+import gains from "../../repositories/gains"
+import { months } from "../../repositories/months"
+import { years } from "../../repositories/years"
 import { Container, Content, Filters } from "./styles"
 
 interface IPageTitle {
@@ -10,40 +14,17 @@ interface IPageTitle {
     lineColor: string
 }
 
-const currentYear = new Date().getFullYear()
-const currentMonth = new Date().getMonth() + 1
-
-const baseMonths = [
-    { value: 1, label: "Janeiro" },
-    { value: 2, label: "Fevereiro" },
-    { value: 3, label: "Março" },
-    { value: 4, label: "Abril" },
-    { value: 5, label: "Maio" },
-    { value: 6, label: "Junho" },
-    { value: 7, label: "Julho" },
-    { value: 8, label: "Agosto" },
-    { value: 9, label: "Setembro" },
-    { value: 10, label: "Outubro" },
-    { value: 11, label: "Novembro" },
-    { value: 12, label: "Dezembro" }
-]
-
-const months = baseMonths.map(month => ({
-    ...month,
-    selected: month.value === currentMonth
-}))
-
-const years: ISelectOptions[] = []
-
-for (let year = currentYear - 5; year <= currentYear + 5; year++) {
-    years.push({
-        value: year,
-        label: `${year}`,
-        selected: year === currentYear
-    })
+interface IData {
+    id: string
+    description: string
+    amountFormatted: string
+    frequency: string
+    dateFormatted: string
+    tagColor: string
 }
 
 export default function List() {
+    const [data, setData] = useState<IData[]>([])
     const { type } = useParams()
 
     const title = useMemo(() => {
@@ -59,6 +40,25 @@ export default function List() {
                   }
         return pageTitle
     }, [type])
+
+    const listData = useMemo(() => {
+        return type === "entry-balance" ? gains : expenses
+    }, [type])
+
+    function normalizeData() {
+        setData(
+            listData.map(item => ({
+                id: String(Math.random() * listData.length),
+                description: item.description,
+                amountFormatted: String(item.amount),
+                dateFormatted: item.date,
+                frequency: item.frequency,
+                tagColor: item.frequency === "recurrent" ? "#4E41F0" : "#E44C4E"
+            }))
+        )
+    }
+
+    useEffect(normalizeData, [listData])
 
     return (
         <Container>
@@ -83,12 +83,15 @@ export default function List() {
             </Filters>
 
             <Content>
-                <HistoryFinanceCard
-                    title="Conta de Luz"
-                    subtitle="10/01/2022"
-                    tagColor="#E44C4E"
-                    amount="R$ 200,00"
-                ></HistoryFinanceCard>
+                {data.map(item => (
+                    <HistoryFinanceCard
+                        key={item.id}
+                        title={item.description}
+                        subtitle={item.dateFormatted}
+                        tagColor={item.tagColor}
+                        amount={item.amountFormatted}
+                    ></HistoryFinanceCard>
+                ))}
             </Content>
         </Container>
     )

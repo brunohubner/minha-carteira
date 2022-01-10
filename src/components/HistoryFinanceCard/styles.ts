@@ -23,6 +23,11 @@ export const Container = styled.div`
         padding-left: 10px;
     }
 
+    > div span {
+        font-weight: 500;
+        font-size: 1.1rem;
+    }
+
     &:hover {
         opacity: 0.8;
         transform: translateX(10px);
