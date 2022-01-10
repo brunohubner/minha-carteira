@@ -7,6 +7,8 @@ import expenses from "../../repositories/expenses"
 import gains from "../../repositories/gains"
 import { months } from "../../repositories/months"
 import { years } from "../../repositories/years"
+import formatCurrency from "../../utils/formatCurrency"
+import formatDate from "../../utils/formatDate"
 import { Container, Content, Filters } from "./styles"
 
 interface IPageTitle {
@@ -50,8 +52,8 @@ export default function List() {
             listData.map(item => ({
                 id: String(Math.random() * listData.length),
                 description: item.description,
-                amountFormatted: String(item.amount),
-                dateFormatted: item.date,
+                amountFormatted: formatCurrency(item.amount),
+                dateFormatted: formatDate(item.date),
                 frequency: item.frequency,
                 tagColor: item.frequency === "recurrent" ? "#4E41F0" : "#E44C4E"
             }))
