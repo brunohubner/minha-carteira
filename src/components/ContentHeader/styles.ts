@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-interface ITitleContainer {
+interface ITitleContainerProps {
     lineColor: string
 }
 
@@ -10,7 +10,7 @@ export const Container = styled.header`
     justify-content: space-between;
 `
 
-export const TitleContainer = styled.div<ITitleContainer>`
+export const TitleContainer = styled.div<ITitleContainerProps>`
     > h1::after {
         content: "";
         display: block;

@@ -25,4 +25,8 @@ export default createGlobalStyle`
         color: ${props => props.theme.colors.white};
         text-decoration: none;
     }
+
+    li {
+        list-style: none;
+    }
 `

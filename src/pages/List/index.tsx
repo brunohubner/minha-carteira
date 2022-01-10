@@ -1,6 +1,7 @@
 import ContentHeader from "../../components/ContentHeader"
+import HistoryFinanceCard from "../../components/HistoryFinanceCard"
 import SelectInput from "../../components/SelectInput"
-import { Container } from "./styles"
+import { Container, Content } from "./styles"
 
 interface IProps {}
 
@@ -17,6 +18,78 @@ export default function List({}: IProps) {
                 <SelectInput options={options}></SelectInput>
                 <SelectInput options={options}></SelectInput>
             </ContentHeader>
+            <Content>
+                <HistoryFinanceCard
+                    title="Conta de Luz"
+                    subtitle="10/01/2022"
+                    cardColor="#313862"
+                    tagColor="#E44C4E"
+                    amount="R$ 200,00"
+                ></HistoryFinanceCard>
+                <HistoryFinanceCard
+                    title="Conta de Luz"
+                    subtitle="10/01/2022"
+                    cardColor="#313862"
+                    tagColor="#E44C4E"
+                    amount="R$ 200,00"
+                ></HistoryFinanceCard>
+                <HistoryFinanceCard
+                    title="Conta de Luz"
+                    subtitle="10/01/2022"
+                    cardColor="#313862"
+                    tagColor="#E44C4E"
+                    amount="R$ 200,00"
+                ></HistoryFinanceCard>
+                <HistoryFinanceCard
+                    title="Conta de Luz"
+                    subtitle="10/01/2022"
+                    cardColor="#313862"
+                    tagColor="#E44C4E"
+                    amount="R$ 200,00"
+                ></HistoryFinanceCard>
+                <HistoryFinanceCard
+                    title="Conta de Luz"
+                    subtitle="10/01/2022"
+                    cardColor="#313862"
+                    tagColor="#E44C4E"
+                    amount="R$ 200,00"
+                ></HistoryFinanceCard>
+                <HistoryFinanceCard
+                    title="Conta de Luz"
+                    subtitle="10/01/2022"
+                    cardColor="#313862"
+                    tagColor="#E44C4E"
+                    amount="R$ 200,00"
+                ></HistoryFinanceCard>
+                <HistoryFinanceCard
+                    title="Conta de Luz"
+                    subtitle="10/01/2022"
+                    cardColor="#313862"
+                    tagColor="#E44C4E"
+                    amount="R$ 200,00"
+                ></HistoryFinanceCard>
+                <HistoryFinanceCard
+                    title="Conta de Luz"
+                    subtitle="10/01/2022"
+                    cardColor="#313862"
+                    tagColor="#E44C4E"
+                    amount="R$ 200,00"
+                ></HistoryFinanceCard>
+                <HistoryFinanceCard
+                    title="Conta de Luz"
+                    subtitle="10/01/2022"
+                    cardColor="#313862"
+                    tagColor="#E44C4E"
+                    amount="R$ 200,00"
+                ></HistoryFinanceCard>
+                <HistoryFinanceCard
+                    title="Conta de Luz"
+                    subtitle="10/01/2022"
+                    cardColor="#313862"
+                    tagColor="#E44C4E"
+                    amount="R$ 200,00"
+                ></HistoryFinanceCard>
+            </Content>
         </Container>
     )
 }
