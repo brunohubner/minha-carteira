@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react"
 import ContentHeader from "../../components/ContentHeader"
+import MessageBox from "../../components/MessageBox"
 import SelectInput from "../../components/SelectInput"
 import WalletBox from "../../components/WalletBox"
 import expenses from "../../repositories/expenses"
@@ -7,6 +8,7 @@ import gains from "../../repositories/gains"
 import { IResponseData } from "../../repositories/IResponseData"
 import { months } from "../../repositories/months"
 import { Container, Content } from "./styles"
+import happyImg from "../../assets/happy.svg"
 
 export default function Dashboard() {
     const [monthSelected, setMonthSelected] = useState(
@@ -69,6 +71,18 @@ export default function Dashboard() {
                     footerLabel="atualizados com base nas entradas e saídas"
                     icon="arrowDown"
                 ></WalletBox>
+                <MessageBox
+                    title="Muito bem"
+                    description="Sua carteira está positiva"
+                    footerText="Continue assim. Considere investir o seu saldo."
+                    icon={happyImg}
+                ></MessageBox>
+                <MessageBox
+                    title="Muito bem"
+                    description="Sua carteira está positiva"
+                    footerText="Continue assim. Considere investir o seu saldo."
+                    icon={happyImg}
+                ></MessageBox>
             </Content>
         </Container>
     )
