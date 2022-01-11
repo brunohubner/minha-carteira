@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const Container = styled.section``
 
-export const Content = styled.section``
+export const Content = styled.main``
 
 export const Filters = styled.div`
     display: flex;
@@ -15,7 +15,7 @@ export const Filters = styled.div`
         font-size: 1rem;
         color: ${props => props.theme.colors.white};
         margin: 0 10px;
-        transition: opacity 0.1s;
+        opacity: 0.4;
 
         &:hover {
             opacity: 0.7;
@@ -29,11 +29,15 @@ export const Filters = styled.div`
         }
     }
 
+    .tag-actived {
+        opacity: 1;
+    }
+
     .tag-filter-recurrent::after {
-        border-bottom: 10px solid ${props => props.theme.colors.warning};
+        border-bottom: 10px solid ${props => props.theme.colors.success};
     }
 
     .tag-filter-eventual::after {
-        border-bottom: 10px solid ${props => props.theme.colors.success};
+        border-bottom: 10px solid ${props => props.theme.colors.warning};
     }
 `

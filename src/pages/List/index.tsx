@@ -6,85 +6,138 @@ import SelectInput from "../../components/SelectInput"
 import expenses from "../../repositories/expenses"
 import gains from "../../repositories/gains"
 import { months } from "../../repositories/months"
-import { years } from "../../repositories/years"
 import formatCurrency from "../../utils/formatCurrency"
 import formatDate from "../../utils/formatDate"
 import { Container, Content, Filters } from "./styles"
+
+type Frequency = "recurrent" | "eventual"
 
 interface IPageTitle {
     label: string
     lineColor: string
 }
 
+interface IResponseData {
+    description: string
+    amount: number
+    type: string
+    frequency: string
+    date: string
+}
+
+interface IPageData {
+    title: IPageTitle
+    pageData: IResponseData[]
+}
+
 interface IData {
     id: string
     description: string
     amountFormatted: string
-    frequency: string
+    frequency: Frequency
     dateFormatted: string
     tagColor: string
 }
 
 export default function List() {
     const [data, setData] = useState<IData[]>([])
+    const [selectedFrequency, setSelectedFrequency] = useState<Frequency[]>([
+        "recurrent",
+        "eventual"
+    ])
     const [monthSelected, setMonthSelected] = useState(
-        String(new Date().getMonth() + 1)
+        new Date().getMonth() + 1
     )
-    const [yearSelected, setYearSelected] = useState(
-        String(new Date().getFullYear())
-    )
+    const [yearSelected, setYearSelected] = useState(new Date().getFullYear())
 
-    const { type } = useParams()
+    const { type: movimentType } = useParams()
 
-    const title = useMemo(() => {
-        const pageTitle: IPageTitle =
-            type === "entry-balance"
-                ? {
+    const { pageData, title }: IPageData = useMemo(() => {
+        return movimentType === "entry-balance"
+            ? {
+                  title: {
                       label: "Entradas",
                       lineColor: "#F7931B"
-                  }
-                : {
+                  },
+                  pageData: gains
+              }
+            : {
+                  title: {
                       label: "Saídas",
                       lineColor: "#4E41F0"
-                  }
-        return pageTitle
-    }, [type])
+                  },
+                  pageData: expenses
+              }
+    }, [movimentType])
 
-    const listData = useMemo(() => {
-        return type === "entry-balance" ? gains : expenses
-    }, [type])
+    const years = useMemo(() => {
+        let uniqueYears: number[] = []
 
-    useEffect(() => {
-        const filteredData = listData.filter(item => {
+        pageData.forEach(item => {
             const date = new Date(item.date)
-            const year = String(date.getFullYear())
-            const month = String(date.getMonth() + 1)
-            return month === monthSelected && year === yearSelected
+            const year = date.getFullYear()
+
+            if (!uniqueYears.includes(year)) {
+                uniqueYears.push(year)
+            }
         })
 
-        const formattedData = filteredData.map(item => ({
-            id: String(Math.random() * listData.length),
+        return uniqueYears.map(year => ({
+            value: year,
+            label: String(year)
+        }))
+    }, [pageData])
+
+    function handleFrequencyClick(frequency: Frequency) {
+        const alreadySelected = selectedFrequency.findIndex(
+            item => item === frequency
+        )
+
+        if (alreadySelected >= 0) {
+            const filtered = selectedFrequency.filter(
+                item => item !== frequency
+            )
+            setSelectedFrequency(filtered)
+            return
+        }
+        setSelectedFrequency(old => [...old, frequency])
+    }
+
+    useEffect(() => {
+        const filteredData = pageData.filter(item => {
+            const date = new Date(item.date)
+            const year = date.getFullYear()
+            const month = date.getMonth() + 1
+            return (
+                month === monthSelected &&
+                year === yearSelected &&
+                selectedFrequency.includes(item.frequency as Frequency)
+            )
+        })
+
+        const formattedData: IData[] = filteredData.map(item => ({
+            id: String(Math.random()),
             description: item.description,
             amountFormatted: formatCurrency(item.amount),
             dateFormatted: formatDate(item.date),
-            frequency: item.frequency,
+            frequency: item.frequency as Frequency,
             tagColor: item.frequency === "recurrent" ? "#4E41F0" : "#E44C4E"
         }))
 
         setData(formattedData)
-    }, [listData, monthSelected, yearSelected, data.length])
+    }, [pageData, monthSelected, yearSelected, data.length, selectedFrequency])
 
     return (
         <Container>
             <ContentHeader title={title.label} lineColor={title.lineColor}>
                 <SelectInput
                     defaultValue={monthSelected}
-                    onChange={e => setMonthSelected(e.target.value)}
+                    onChange={e => setMonthSelected(+e.target.value)}
                     options={months}
                 ></SelectInput>
                 <SelectInput
                     defaultValue={yearSelected}
-                    onChange={e => setYearSelected(e.target.value)}
+                    onChange={e => setYearSelected(+e.target.value)}
                     options={years}
                 ></SelectInput>
             </ContentHeader>
@@ -92,13 +145,23 @@ export default function List() {
             <Filters>
                 <button
                     type="button"
-                    className="tag-filter tag-filter-recurrent"
+                    className={`
+                    ${
+                        selectedFrequency.includes("recurrent") && "tag-actived"
+                    } tag-filter tag-filter-recurrent
+                    `}
+                    onClick={() => handleFrequencyClick("recurrent")}
                 >
                     Recorrentes
                 </button>
                 <button
                     type="button"
-                    className="tag-filter tag-filter-eventual"
+                    className={`
+                    ${
+                        selectedFrequency.includes("eventual") && "tag-actived"
+                    } tag-filter tag-filter-eventual
+                    `}
+                    onClick={() => handleFrequencyClick("eventual")}
                 >
                     Eventuais
                 </button>
