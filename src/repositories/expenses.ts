@@ -1,4 +1,6 @@
-const expenses = [
+import { IResponseData } from "./IResponseData"
+
+const expenses: IResponseData[] = [
     {
         description: "Energia elétrica",
         amount: 150.55,

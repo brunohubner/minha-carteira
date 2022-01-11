@@ -5,6 +5,7 @@ import HistoryFinanceCard from "../../components/HistoryFinanceCard"
 import SelectInput from "../../components/SelectInput"
 import expenses from "../../repositories/expenses"
 import gains from "../../repositories/gains"
+import { IResponseData } from "../../repositories/IResponseData"
 import { months } from "../../repositories/months"
 import formatCurrency from "../../utils/formatCurrency"
 import formatDate from "../../utils/formatDate"
@@ -15,14 +16,6 @@ type Frequency = "recurrent" | "eventual"
 interface IPageTitle {
     label: string
     lineColor: string
-}
-
-interface IResponseData {
-    description: string
-    amount: number
-    type: string
-    frequency: string
-    date: string
 }
 
 interface IPageData {

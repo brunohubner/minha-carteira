@@ -1,4 +1,6 @@
-const gains = [
+import { IResponseData } from "./IResponseData"
+
+const gains: IResponseData[] = [
     {
         description: "Salário",
         amount: 1300.52,
