@@ -9,6 +9,9 @@ import { IResponseData } from "../../repositories/IResponseData"
 import { months } from "../../repositories/months"
 import { Container, Content } from "./styles"
 import happyImg from "../../assets/happy.svg"
+import sadImg from "../../assets/sad.svg"
+import grinningImg from "../../assets/grinning.svg"
+import PieChart from "../../components/PieChart"
 
 export default function Dashboard() {
     const [monthSelected, setMonthSelected] = useState(
@@ -35,6 +38,81 @@ export default function Dashboard() {
         }))
     }, [])
 
+    function getTotalBalances(collection: IResponseData[]): number {
+        return collection.reduce((total, item) => {
+            const date = new Date(item.date)
+            const year = date.getFullYear()
+            const month = date.getMonth() + 1
+
+            if (month === monthSelected && year === yearSelected) {
+                return total + item.amount
+            }
+            return total
+        }, 0)
+    }
+
+    const totalExpenses = useMemo(() => {
+        return getTotalBalances(expenses)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [monthSelected, yearSelected])
+
+    const totalGains = useMemo(() => {
+        return getTotalBalances(gains)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [monthSelected, yearSelected])
+
+    const balance = useMemo(() => {
+        return totalGains - totalExpenses
+    }, [totalGains, totalExpenses])
+
+    const relationExpensesVesusGains = useMemo(() => {
+        const total = totalGains + totalExpenses
+        const percentGains = (totalGains / total) * 100
+        const percentExpenses = (totalExpenses / total) * 100
+
+        return [
+            {
+                name: "Entradas",
+                value: totalGains,
+                percent: Math.round(percentGains),
+                color: "#F7931B"
+            },
+            {
+                name: "Saídas",
+                value: totalExpenses,
+                percent: Math.round(percentExpenses),
+                color: "#E44C4E"
+            }
+        ]
+    }, [totalGains, totalExpenses])
+
+    const message = useMemo(() => {
+        if (balance > 0) {
+            return {
+                title: "Muito bem",
+                description: "Sua carteira está positiva",
+                footerText: "Continue assim. Considere investir o seu saldo.",
+                icon: happyImg
+            }
+        }
+        if (balance < 0) {
+            return {
+                title: "Que triste!",
+                description: "Neste mês você gastou mais do que deveria!",
+                footerText:
+                    "Verifique seus gastos e tente cortar algumas coisas desnecessárias.",
+                icon: sadImg
+            }
+        }
+        return {
+            title: "Ufa!",
+            description: "Neste mês você gastou exatamente o que ganhou!",
+            footerText:
+                "Tenha cuidado! Tente poupar seu dinheiro no próximo mês!",
+            icon: grinningImg
+        }
+    }, [balance])
+
     return (
         <Container>
             <ContentHeader title="Dashboard" lineColor="#F7931B">
@@ -52,37 +130,27 @@ export default function Dashboard() {
             <Content>
                 <WalletBox
                     title="Saldo"
-                    amount={150.0}
+                    amount={balance}
                     color="#4E41F0"
                     footerLabel="atualizados com base nas entradas e saídas"
                     icon="dolar"
                 ></WalletBox>
                 <WalletBox
                     title="Entradas"
-                    amount={5000.0}
+                    amount={totalGains}
                     color="#F7931B"
                     footerLabel="atualizados com base nas entradas e saídas"
                     icon="arrowUp"
                 ></WalletBox>
                 <WalletBox
                     title="Saídas"
-                    amount={4650.0}
+                    amount={totalExpenses}
                     color="#E44C4E"
                     footerLabel="atualizados com base nas entradas e saídas"
                     icon="arrowDown"
                 ></WalletBox>
-                <MessageBox
-                    title="Muito bem"
-                    description="Sua carteira está positiva"
-                    footerText="Continue assim. Considere investir o seu saldo."
-                    icon={happyImg}
-                ></MessageBox>
-                <MessageBox
-                    title="Muito bem"
-                    description="Sua carteira está positiva"
-                    footerText="Continue assim. Considere investir o seu saldo."
-                    icon={happyImg}
-                ></MessageBox>
+                <MessageBox {...message}></MessageBox>
+                <PieChart data={relationExpensesVesusGains}></PieChart>
             </Content>
         </Container>
     )

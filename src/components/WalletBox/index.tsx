@@ -40,7 +40,7 @@ export default function WalletBox({
                     separator="."
                     decimal=","
                     decimals={2}
-                    duration={2}
+                    duration={1.5}
                 ></CountUp>
             </h1>
             <small>{footerLabel}</small>
