@@ -30,5 +30,6 @@ export const Container = styled.section<IContainerProps>`
     > small {
         position: absolute;
         bottom: 10px;
+        z-index: 10;
     }
 `

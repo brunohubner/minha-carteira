@@ -25,7 +25,7 @@ export default function BarChartBox({ title, data }: IProps) {
                 <h2>{title}</h2>
                 <LegendContainer>
                     {data.map(item => (
-                        <Legend color={item.color}>
+                        <Legend key={item.name} color={item.color}>
                             <div>{`${item.percent}%`}</div>
                             <span>{item.name}</span>
                         </Legend>

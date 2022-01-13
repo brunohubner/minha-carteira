@@ -34,10 +34,10 @@ export const Filters = styled.div`
     }
 
     .tag-filter-recurrent::after {
-        border-bottom: 10px solid ${props => props.theme.colors.success};
+        border-bottom: 10px solid #4e41f0;
     }
 
     .tag-filter-eventual::after {
-        border-bottom: 10px solid ${props => props.theme.colors.warning};
+        border-bottom: 10px solid #e44c4e;
     }
 `

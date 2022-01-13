@@ -1,4 +1,6 @@
-const light = {
+import { ITheme } from "./ITheme"
+
+const light: ITheme = {
     title: "light",
     colors: {
         primary: "#DCDCDC",

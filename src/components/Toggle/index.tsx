@@ -1,21 +1,28 @@
-import { useState } from "react"
 import { Container, ToggleLabel, ToggleSelector } from "./styles"
 
-type Theme = "light" | "dark"
+interface IProps {
+    labelLeft?: string
+    labelRight?: string
+    checked: boolean
+    onChange: () => void
+}
 
-export default function Toggle() {
-    const [theme, setTheme] = useState<Theme>("dark")
-
+export default function Toggle({
+    checked,
+    onChange,
+    labelLeft,
+    labelRight
+}: IProps) {
     return (
         <Container>
-            <ToggleLabel>Light</ToggleLabel>
+            <ToggleLabel>{labelLeft}</ToggleLabel>
             <ToggleSelector
-                checked={theme === "dark"}
-                onChange={() => setTheme(theme === "dark" ? "light" : "dark")}
+                checked={checked}
+                onChange={onChange}
                 uncheckedIcon={false}
                 checkedIcon={false}
             ></ToggleSelector>
-            <ToggleLabel>Dark</ToggleLabel>
+            <ToggleLabel>{labelRight}</ToggleLabel>
         </Container>
     )
 }
