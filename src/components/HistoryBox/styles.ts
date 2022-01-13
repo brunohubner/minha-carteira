@@ -9,7 +9,7 @@ export const Container = styled.div`
     height: 340px;
     background-color: ${props => props.theme.colors.tertiary};
     margin: 10px 0;
-    padding: 30px 30px 40px 30px;
+    padding: 30px 12px 40px 14px;
     border-radius: 8px;
     display: flex;
     flex-direction: column;

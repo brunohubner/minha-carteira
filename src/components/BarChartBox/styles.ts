@@ -5,44 +5,36 @@ interface ILegendProps {
 }
 
 export const Container = styled.div`
+    display: flex;
     width: 49%;
     height: 260px;
-    background-color: ${props => props.theme.colors.tertiary};
-    border-radius: 8px;
     margin: 10px 0;
+    border-radius: 8px;
+    background-color: ${props => props.theme.colors.tertiary};
     padding: 20px 30px;
-    display: flex;
 `
 
 export const SideLeft = styled.aside`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 50%;
+`
+
+export const SideRight = styled.main`
+    flex: 1;
+    width: 50%;
 `
 
 export const LegendContainer = styled.ul`
-    max-height: 175px;
-    overflow-y: scroll;
-    padding-right: 10px;
-
-    ::-webkit-scrollbar {
-        width: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background-color: ${props => props.theme.colors.secondary};
-        border-radius: 5px;
-    }
-
-    ::-webkit-scrollbar-track {
-        background-color: ${props => props.theme.colors.tertiary};
-    }
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 `
 
 export const Legend = styled.li<ILegendProps>`
     display: flex;
     align-items: center;
-    margin-bottom: 8px;
 
     > div {
         background-color: ${props => props.color};
@@ -55,10 +47,4 @@ export const Legend = styled.li<ILegendProps>`
         border-radius: 5px;
         margin-right: 8px;
     }
-`
-
-export const SideRight = styled.main`
-    display: flex;
-    justify-content: center;
-    flex: 1;
 `

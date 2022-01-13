@@ -11,8 +11,10 @@ import { Container, Content } from "./styles"
 import happyImg from "../../assets/happy.svg"
 import sadImg from "../../assets/sad.svg"
 import grinningImg from "../../assets/grinning.svg"
+import opsImg from "../../assets/ops.svg"
 import PieChart from "../../components/PieChart"
 import HistoryBox from "../../components/HistoryBox"
+import BarChartBox from "../../components/BarChartBox"
 
 export default function Dashboard() {
     const [monthSelected, setMonthSelected] = useState(
@@ -68,8 +70,8 @@ export default function Dashboard() {
 
     const relationExpensesVesusGains = useMemo(() => {
         const total = totalGains + totalExpenses
-        const percentGains = (totalGains / total) * 100
-        const percentExpenses = (totalExpenses / total) * 100
+        const percentGains = (totalGains / total) * 100 || 0
+        const percentExpenses = (totalExpenses / total) * 100 || 0
 
         return [
             {
@@ -105,6 +107,14 @@ export default function Dashboard() {
                 icon: sadImg
             }
         }
+        if (balance === 0 && totalExpenses === 0) {
+            return {
+                title: "Ops!",
+                description: "Neste mês não há registros!",
+                footerText: "Não há resgitros para exibir este mês",
+                icon: opsImg
+            }
+        }
         return {
             title: "Ufa!",
             description: "Neste mês você gastou exatamente o que ganhou!",
@@ -112,7 +122,7 @@ export default function Dashboard() {
                 "Tenha cuidado! Tente poupar seu dinheiro no próximo mês!",
             icon: grinningImg
         }
-    }, [balance])
+    }, [balance, totalExpenses])
 
     function getHistoryData(collection: IResponseData[], month: number) {
         return collection.reduce((total, item) => {
@@ -142,6 +152,55 @@ export default function Dashboard() {
         })
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [yearSelected])
+
+    function relationRecurrentVersusEventual(collection: IResponseData[]) {
+        let amountRecurrent = 0
+        let amountEventual = 0
+
+        collection
+            .filter(item => {
+                const date = new Date(item.date)
+                const year = date.getFullYear()
+                const month = date.getMonth() + 1
+
+                return month === monthSelected && year === yearSelected
+            })
+            .forEach(item => {
+                if (item.frequency === "recurrent") {
+                    return (amountRecurrent += item.amount)
+                }
+                if (item.frequency === "eventual") {
+                    return (amountEventual += item.amount)
+                }
+            })
+
+        const total = amountEventual + amountRecurrent
+
+        return [
+            {
+                name: "Recorrentes",
+                amount: amountRecurrent,
+                percent: Math.round((amountRecurrent / total) * 100 || 0),
+                color: "#4E41F0"
+            },
+            {
+                name: "Eventuais",
+                amount: amountEventual,
+                percent: Math.round((amountEventual / total) * 100 || 0),
+                color: "#E44C4E"
+            }
+        ]
+    }
+
+    const relationExpensevesRecurrentVersusEventual = useMemo(() => {
+        return relationRecurrentVersusEventual(expenses)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [monthSelected, yearSelected])
+
+    const relationGainsRecurrentVersusEventual = useMemo(() => {
+        return relationRecurrentVersusEventual(gains)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [monthSelected, yearSelected])
 
     return (
         <Container>
@@ -186,6 +245,14 @@ export default function Dashboard() {
                     lineColorAmountEntry="#F7931B"
                     lineColorAmountOutput="#E44C4E"
                 ></HistoryBox>
+                <BarChartBox
+                    title="Entradas"
+                    data={relationGainsRecurrentVersusEventual}
+                ></BarChartBox>
+                <BarChartBox
+                    title="Saídas"
+                    data={relationExpensevesRecurrentVersusEventual}
+                ></BarChartBox>
             </Content>
         </Container>
     )

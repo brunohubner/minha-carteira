@@ -10,7 +10,7 @@ export const Container = styled.section<IContainerProps>`
     height: 150px;
     margin: 10px 0;
     border-radius: 8px;
-    padding: 10px 20px;
+    padding: 20px 30px;
     position: relative;
     overflow: hidden;
 
