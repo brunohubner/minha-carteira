@@ -3,353 +3,591 @@ import { IResponseData } from "./IResponseData"
 const expenses: IResponseData[] = [
     {
         description: "Energia elétrica",
-        amount: 150.55,
+        amount: 500.55,
         type: "exit",
         frequency: "recurrent",
         date: "2022-01-10"
     },
     {
         description: "Água",
-        amount: 75.55,
+        amount: 275.55,
         type: "exit",
         frequency: "recurrent",
         date: "2022-01-15"
     },
     {
         description: "Telefone",
-        amount: 99.99,
+        amount: 299.99,
         type: "exit",
         frequency: "recurrent",
         date: "2022-01-23"
     },
     {
         description: "Plano de Saúde",
-        amount: 300.0,
+        amount: 900.0,
         type: "exit",
         frequency: "recurrent",
         date: "2022-01-23"
     },
     {
         description: "Compras do mês",
-        amount: 625.78,
+        amount: 1950.78,
         type: "exit",
         frequency: "recurrent",
         date: "2022-01-23"
     },
     {
         description: "Lanche",
-        amount: 45.7,
-        type: "exit",
-        frequency: "eventual",
-        date: "2022-01-23"
-    },
-    {
-        description: "Blusa",
         amount: 95.7,
         type: "exit",
         frequency: "eventual",
         date: "2022-01-23"
     },
     {
-        description: "Energia elétrica",
-        amount: 125.55,
-        type: "exit",
-        frequency: "recurrent",
-        date: "2022-02-10"
-    },
-    {
-        description: "Água",
-        amount: 90.15,
-        type: "exit",
-        frequency: "recurrent",
-        date: "2022-02-15"
-    },
-    {
-        description: "Telefone",
-        amount: 99.99,
-        type: "exit",
-        frequency: "recurrent",
-        date: "2022-02-23"
-    },
-    {
-        description: "Plano de Saúde",
-        amount: 300.0,
-        type: "exit",
-        frequency: "recurrent",
-        date: "2022-02-23"
-    },
-    {
-        description: "Compras do mês",
-        amount: 540.0,
-        type: "exit",
-        frequency: "recurrent",
-        date: "2022-02-25"
-    },
-    {
-        description: "Parcela do Celular 1/5",
-        amount: 150.99,
-        type: "exit",
-        frequency: "eventual",
-        date: "2022-02-26"
-    },
-    {
-        description: "Cinema",
-        amount: 45.0,
-        type: "exit",
-        frequency: "eventual",
-        date: "2022-02-23"
-    },
-    {
-        description: "Energia elétrica",
-        amount: 97.0,
-        type: "exit",
-        frequency: "recurrent",
-        date: "2022-03-10"
-    },
-    {
-        description: "Água",
-        amount: 100.1,
-        type: "exit",
-        frequency: "recurrent",
-        date: "2022-03-15"
-    },
-    {
-        description: "Telefone",
-        amount: 99.99,
-        type: "exit",
-        frequency: "recurrent",
-        date: "2022-03-23"
-    },
-    {
-        description: "Plano de Saúde",
-        amount: 300.0,
-        type: "exit",
-        frequency: "recurrent",
-        date: "2022-03-23"
-    },
-    {
-        description: "Compras do mês",
-        amount: 800.5,
-        type: "exit",
-        frequency: "recurrent",
-        date: "2022-03-17"
-    },
-    {
-        description: "Parcela do Celular 2/5",
-        amount: 150.99,
-        type: "exit",
-        frequency: "eventual",
-        date: "2022-03-18"
-    },
-    {
-        description: "Troca de Oléo do carro",
-        amount: 90.0,
-        type: "exit",
-        frequency: "eventual",
-        date: "2022-03-23"
-    },
-    {
-        description: "Energia elétrica",
-        amount: 75.99,
-        type: "exit",
-        frequency: "recurrent",
-        date: "2022-04-10"
-    },
-    {
-        description: "Água",
-        amount: 80.33,
-        type: "exit",
-        frequency: "recurrent",
-        date: "2022-04-15"
-    },
-    {
-        description: "Telefone",
-        amount: 99.99,
-        type: "exit",
-        frequency: "recurrent",
-        date: "2022-04-23"
-    },
-    {
-        description: "Plano de Saúde",
-        amount: 300.0,
-        type: "exit",
-        frequency: "recurrent",
-        date: "2022-04-23"
-    },
-    {
-        description: "Compras do mês",
-        amount: 600.0,
-        type: "exit",
-        frequency: "recurrent",
-        date: "2022-04-25"
-    },
-    {
-        description: "Parcela do Celular 3/5",
-        amount: 150.99,
-        type: "exit",
-        frequency: "eventual",
-        date: "2022-04-26"
-    },
-    {
-        description: "Ebook de React Js",
-        amount: 85.95,
-        type: "exit",
-        frequency: "eventual",
-        date: "2022-04-13"
-    },
-    {
-        description: "Energia elétrica",
-        amount: 125.55,
-        type: "exit",
-        frequency: "recurrent",
-        date: "2022-05-10"
-    },
-    {
-        description: "Água",
-        amount: 90.15,
-        type: "exit",
-        frequency: "recurrent",
-        date: "2022-05-15"
-    },
-    {
-        description: "Telefone",
-        amount: 99.99,
-        type: "exit",
-        frequency: "recurrent",
-        date: "2022-05-23"
-    },
-    {
-        description: "Plano de Saúde",
-        amount: 300.0,
-        type: "exit",
-        frequency: "recurrent",
-        date: "2022-05-23"
-    },
-    {
-        description: "Compras do mês",
-        amount: 540.0,
-        type: "exit",
-        frequency: "recurrent",
-        date: "2022-05-25"
-    },
-    {
-        description: "Parcela do Celular 4/5",
-        amount: 150.99,
-        type: "exit",
-        frequency: "eventual",
-        date: "2022-05-26"
-    },
-    {
-        description: "Blusa Iron Man",
-        amount: 150.0,
+        description: "Blusa",
+        amount: 495.7,
         type: "exit",
         frequency: "eventual",
         date: "2022-01-23"
     },
     {
         description: "Energia elétrica",
-        amount: 200.0,
+        amount: 200.55,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-02-10"
+    },
+    {
+        description: "Água",
+        amount: 275.55,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-02-15"
+    },
+    {
+        description: "Telefone",
+        amount: 299.99,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-02-23"
+    },
+    {
+        description: "Plano de Saúde",
+        amount: 900.0,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-02-23"
+    },
+    {
+        description: "Compras do mês",
+        amount: 1250.78,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-02-23"
+    },
+    {
+        description: "Lanche",
+        amount: 95.7,
+        type: "exit",
+        frequency: "eventual",
+        date: "2022-02-23"
+    },
+    {
+        description: "Blusa",
+        amount: 495.7,
+        type: "exit",
+        frequency: "eventual",
+        date: "2022-02-23"
+    },
+    {
+        description: "Energia elétrica",
+        amount: 200.55,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-03-10"
+    },
+    {
+        description: "Água",
+        amount: 275.55,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-03-15"
+    },
+    {
+        description: "Telefone",
+        amount: 499.99,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-03-23"
+    },
+    {
+        description: "Plano de Saúde",
+        amount: 900.0,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-03-23"
+    },
+    {
+        description: "Compras do mês",
+        amount: 1250.78,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-03-23"
+    },
+    {
+        description: "Lanche",
+        amount: 295.7,
+        type: "exit",
+        frequency: "eventual",
+        date: "2022-03-23"
+    },
+    {
+        description: "Blusa",
+        amount: 795.7,
+        type: "exit",
+        frequency: "eventual",
+        date: "2022-03-23"
+    },
+    {
+        description: "Energia elétrica",
+        amount: 200.55,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-04-10"
+    },
+    {
+        description: "Água",
+        amount: 275.55,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-04-15"
+    },
+    {
+        description: "Telefone",
+        amount: 499.99,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-04-23"
+    },
+    {
+        description: "Plano de Saúde",
+        amount: 900.0,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-04-23"
+    },
+    {
+        description: "Compras do mês",
+        amount: 1250.78,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-04-23"
+    },
+    {
+        description: "Lanche",
+        amount: 195.7,
+        type: "exit",
+        frequency: "eventual",
+        date: "2022-04-23"
+    },
+    {
+        description: "Blusa",
+        amount: 495.7,
+        type: "exit",
+        frequency: "eventual",
+        date: "2022-04-23"
+    },
+    {
+        description: "Energia elétrica",
+        amount: 200.55,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-05-10"
+    },
+    {
+        description: "Água",
+        amount: 375.55,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-05-15"
+    },
+    {
+        description: "Telefone",
+        amount: 499.99,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-05-23"
+    },
+    {
+        description: "Plano de Saúde",
+        amount: 900.0,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-05-23"
+    },
+    {
+        description: "Compras do mês",
+        amount: 1250.78,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-05-23"
+    },
+    {
+        description: "Lanche",
+        amount: 495.7,
+        type: "exit",
+        frequency: "eventual",
+        date: "2022-05-23"
+    },
+    {
+        description: "Blusa",
+        amount: 495.7,
+        type: "exit",
+        frequency: "eventual",
+        date: "2022-05-23"
+    },
+    {
+        description: "Energia elétrica",
+        amount: 200.55,
         type: "exit",
         frequency: "recurrent",
         date: "2022-06-10"
     },
     {
         description: "Água",
-        amount: 150.0,
+        amount: 375.55,
         type: "exit",
         frequency: "recurrent",
         date: "2022-06-15"
     },
     {
         description: "Telefone",
-        amount: 99.99,
+        amount: 799.99,
         type: "exit",
         frequency: "recurrent",
         date: "2022-06-23"
     },
     {
         description: "Plano de Saúde",
-        amount: 300.0,
+        amount: 900.0,
         type: "exit",
         frequency: "recurrent",
         date: "2022-06-23"
     },
     {
         description: "Compras do mês",
-        amount: 559.15,
+        amount: 1250.78,
         type: "exit",
         frequency: "recurrent",
-        date: "2022-06-25"
+        date: "2022-06-23"
     },
     {
-        description: "Parcela do Celular 5/5",
-        amount: 150.99,
+        description: "Lanche",
+        amount: 795.7,
         type: "exit",
         frequency: "eventual",
-        date: "2022-06-26"
+        date: "2022-06-23"
     },
     {
-        description: "Perfume",
-        amount: 250.0,
+        description: "Blusa",
+        amount: 795.7,
         type: "exit",
         frequency: "eventual",
-        date: "2022-06-21"
+        date: "2022-06-23"
     },
     {
         description: "Energia elétrica",
-        amount: 250.0,
+        amount: 500.55,
         type: "exit",
         frequency: "recurrent",
         date: "2022-07-10"
     },
     {
         description: "Água",
-        amount: 90.0,
+        amount: 275.55,
         type: "exit",
         frequency: "recurrent",
         date: "2022-07-15"
     },
     {
         description: "Telefone",
-        amount: 99.99,
+        amount: 299.99,
         type: "exit",
         frequency: "recurrent",
         date: "2022-07-23"
     },
     {
         description: "Plano de Saúde",
-        amount: 300.0,
+        amount: 900.0,
         type: "exit",
         frequency: "recurrent",
         date: "2022-07-23"
     },
     {
         description: "Compras do mês",
-        amount: 700.0,
+        amount: 1950.78,
         type: "exit",
         frequency: "recurrent",
-        date: "2022-07-25"
+        date: "2022-07-23"
     },
     {
-        description: "Cafeteira",
-        amount: 250.0,
+        description: "Lanche",
+        amount: 95.7,
         type: "exit",
         frequency: "eventual",
-        date: "2022-07-26"
+        date: "2022-07-23"
     },
     {
-        description: "Pizza",
-        amount: 60.0,
+        description: "Blusa",
+        amount: 495.7,
         type: "exit",
         frequency: "eventual",
-        date: "2022-07-19"
+        date: "2022-07-23"
     },
     {
-        description: "Pizza",
-        amount: 750.01,
+        description: "Energia elétrica",
+        amount: 200.55,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-08-10"
+    },
+    {
+        description: "Água",
+        amount: 275.55,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-08-15"
+    },
+    {
+        description: "Telefone",
+        amount: 299.99,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-08-23"
+    },
+    {
+        description: "Plano de Saúde",
+        amount: 900.0,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-08-23"
+    },
+    {
+        description: "Compras do mês",
+        amount: 1250.78,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-08-23"
+    },
+    {
+        description: "Lanche",
+        amount: 95.7,
         type: "exit",
         frequency: "eventual",
-        date: "2022-07-19"
+        date: "2022-08-23"
+    },
+    {
+        description: "Blusa",
+        amount: 495.7,
+        type: "exit",
+        frequency: "eventual",
+        date: "2022-08-23"
+    },
+    {
+        description: "Energia elétrica",
+        amount: 200.55,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-09-10"
+    },
+    {
+        description: "Água",
+        amount: 275.55,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-09-15"
+    },
+    {
+        description: "Telefone",
+        amount: 499.99,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-09-23"
+    },
+    {
+        description: "Plano de Saúde",
+        amount: 900.0,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-09-23"
+    },
+    {
+        description: "Compras do mês",
+        amount: 1250.78,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-09-23"
+    },
+    {
+        description: "Lanche",
+        amount: 295.7,
+        type: "exit",
+        frequency: "eventual",
+        date: "2022-09-23"
+    },
+    {
+        description: "Blusa",
+        amount: 795.7,
+        type: "exit",
+        frequency: "eventual",
+        date: "2022-09-23"
+    },
+    {
+        description: "Energia elétrica",
+        amount: 200.55,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-10-10"
+    },
+    {
+        description: "Água",
+        amount: 275.55,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-10-15"
+    },
+    {
+        description: "Telefone",
+        amount: 499.99,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-10-23"
+    },
+    {
+        description: "Plano de Saúde",
+        amount: 900.0,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-10-23"
+    },
+    {
+        description: "Compras do mês",
+        amount: 1250.78,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-10-23"
+    },
+    {
+        description: "Lanche",
+        amount: 195.7,
+        type: "exit",
+        frequency: "eventual",
+        date: "2022-10-23"
+    },
+    {
+        description: "Blusa",
+        amount: 495.7,
+        type: "exit",
+        frequency: "eventual",
+        date: "2022-10-23"
+    },
+    {
+        description: "Energia elétrica",
+        amount: 200.55,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-11-10"
+    },
+    {
+        description: "Água",
+        amount: 375.55,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-11-15"
+    },
+    {
+        description: "Telefone",
+        amount: 499.99,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-11-23"
+    },
+    {
+        description: "Plano de Saúde",
+        amount: 900.0,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-11-23"
+    },
+    {
+        description: "Compras do mês",
+        amount: 1250.78,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-11-23"
+    },
+    {
+        description: "Lanche",
+        amount: 495.7,
+        type: "exit",
+        frequency: "eventual",
+        date: "2022-11-23"
+    },
+    {
+        description: "Blusa",
+        amount: 295.7,
+        type: "exit",
+        frequency: "eventual",
+        date: "2022-11-23"
+    },
+    {
+        description: "Energia elétrica",
+        amount: 200.55,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-12-10"
+    },
+    {
+        description: "Água",
+        amount: 375.55,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-12-15"
+    },
+    {
+        description: "Telefone",
+        amount: 199.99,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-12-23"
+    },
+    {
+        description: "Plano de Saúde",
+        amount: 300.0,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-12-23"
+    },
+    {
+        description: "Compras do mês",
+        amount: 550.78,
+        type: "exit",
+        frequency: "recurrent",
+        date: "2022-12-23"
+    },
+    {
+        description: "Lanche",
+        amount: 795.7,
+        type: "exit",
+        frequency: "eventual",
+        date: "2022-12-23"
+    },
+    {
+        description: "Blusa",
+        amount: 795.7,
+        type: "exit",
+        frequency: "eventual",
+        date: "2022-12-23"
     }
 ]
 

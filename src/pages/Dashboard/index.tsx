@@ -12,6 +12,7 @@ import happyImg from "../../assets/happy.svg"
 import sadImg from "../../assets/sad.svg"
 import grinningImg from "../../assets/grinning.svg"
 import PieChart from "../../components/PieChart"
+import HistoryBox from "../../components/HistoryBox"
 
 export default function Dashboard() {
     const [monthSelected, setMonthSelected] = useState(
@@ -113,6 +114,35 @@ export default function Dashboard() {
         }
     }, [balance])
 
+    function getHistoryData(collection: IResponseData[], month: number) {
+        return collection.reduce((total, item) => {
+            const date = new Date(item.date)
+            const collectionMonth = date.getMonth()
+            const collectionYear = date.getFullYear()
+
+            if (collectionMonth === month && collectionYear === yearSelected) {
+                return total + item.amount
+            }
+            return total
+        }, 0)
+    }
+
+    const historyData = useMemo(() => {
+        return months.map((_, month) => {
+            const amountEntry = getHistoryData(gains, month)
+            const amountOutput = getHistoryData(expenses, month)
+
+            const result = {
+                monthNumber: month,
+                month: months[month].label.substring(0, 3),
+                amountEntry: +amountEntry.toFixed(2),
+                amountOutput: +amountOutput.toFixed(2)
+            }
+            return result
+        })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [yearSelected])
+
     return (
         <Container>
             <ContentHeader title="Dashboard" lineColor="#F7931B">
@@ -151,6 +181,11 @@ export default function Dashboard() {
                 ></WalletBox>
                 <MessageBox {...message}></MessageBox>
                 <PieChart data={relationExpensesVesusGains}></PieChart>
+                <HistoryBox
+                    data={historyData}
+                    lineColorAmountEntry="#F7931B"
+                    lineColorAmountOutput="#E44C4E"
+                ></HistoryBox>
             </Content>
         </Container>
     )
