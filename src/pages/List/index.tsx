@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import { useParams } from "react-router-dom"
 import ContentHeader from "../../components/ContentHeader"
 import HistoryFinanceCard from "../../components/HistoryFinanceCard"
@@ -81,20 +81,23 @@ export default function List() {
         }))
     }, [pageData])
 
-    function handleFrequencyClick(frequency: Frequency) {
-        const alreadySelected = selectedFrequency.findIndex(
-            item => item === frequency
-        )
-
-        if (alreadySelected >= 0) {
-            const filtered = selectedFrequency.filter(
-                item => item !== frequency
+    const handleFrequencyClick = useCallback(
+        (frequency: Frequency) => {
+            const alreadySelected = selectedFrequency.findIndex(
+                item => item === frequency
             )
-            setSelectedFrequency(filtered)
-            return
-        }
-        setSelectedFrequency(old => [...old, frequency])
-    }
+
+            if (alreadySelected >= 0) {
+                const filtered = selectedFrequency.filter(
+                    item => item !== frequency
+                )
+                setSelectedFrequency(filtered)
+                return
+            }
+            setSelectedFrequency(old => [...old, frequency])
+        },
+        [selectedFrequency]
+    )
 
     useEffect(() => {
         const filteredData = pageData.filter(item => {

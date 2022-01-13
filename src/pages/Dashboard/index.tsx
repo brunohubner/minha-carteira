@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react"
+import { useCallback, useMemo, useState } from "react"
 import ContentHeader from "../../components/ContentHeader"
 import MessageBox from "../../components/MessageBox"
 import SelectInput from "../../components/SelectInput"
@@ -41,18 +41,21 @@ export default function Dashboard() {
         }))
     }, [])
 
-    function getTotalBalances(collection: IResponseData[]): number {
-        return collection.reduce((total, item) => {
-            const date = new Date(item.date)
-            const year = date.getFullYear()
-            const month = date.getMonth() + 1
+    const getTotalBalances = useCallback(
+        (collection: IResponseData[]): number => {
+            return collection.reduce((total, item) => {
+                const date = new Date(item.date)
+                const year = date.getFullYear()
+                const month = date.getMonth() + 1
 
-            if (month === monthSelected && year === yearSelected) {
-                return total + item.amount
-            }
-            return total
-        }, 0)
-    }
+                if (month === monthSelected && year === yearSelected) {
+                    return total + item.amount
+                }
+                return total
+            }, 0)
+        },
+        [monthSelected, yearSelected]
+    )
 
     const totalExpenses = useMemo(() => {
         return getTotalBalances(expenses)
@@ -124,18 +127,24 @@ export default function Dashboard() {
         }
     }, [balance, totalExpenses])
 
-    function getHistoryData(collection: IResponseData[], month: number) {
-        return collection.reduce((total, item) => {
-            const date = new Date(item.date)
-            const collectionMonth = date.getMonth()
-            const collectionYear = date.getFullYear()
+    const getHistoryData = useCallback(
+        (collection: IResponseData[], month: number) => {
+            return collection.reduce((total, item) => {
+                const date = new Date(item.date)
+                const collectionMonth = date.getMonth()
+                const collectionYear = date.getFullYear()
 
-            if (collectionMonth === month && collectionYear === yearSelected) {
-                return total + item.amount
-            }
-            return total
-        }, 0)
-    }
+                if (
+                    collectionMonth === month &&
+                    collectionYear === yearSelected
+                ) {
+                    return total + item.amount
+                }
+                return total
+            }, 0)
+        },
+        [yearSelected]
+    )
 
     const historyData = useMemo(() => {
         return months.map((_, month) => {
@@ -153,44 +162,47 @@ export default function Dashboard() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [yearSelected])
 
-    function relationRecurrentVersusEventual(collection: IResponseData[]) {
-        let amountRecurrent = 0
-        let amountEventual = 0
+    const relationRecurrentVersusEventual = useCallback(
+        (collection: IResponseData[]) => {
+            let amountRecurrent = 0
+            let amountEventual = 0
 
-        collection
-            .filter(item => {
-                const date = new Date(item.date)
-                const year = date.getFullYear()
-                const month = date.getMonth() + 1
+            collection
+                .filter(item => {
+                    const date = new Date(item.date)
+                    const year = date.getFullYear()
+                    const month = date.getMonth() + 1
 
-                return month === monthSelected && year === yearSelected
-            })
-            .forEach(item => {
-                if (item.frequency === "recurrent") {
-                    return (amountRecurrent += item.amount)
+                    return month === monthSelected && year === yearSelected
+                })
+                .forEach(item => {
+                    if (item.frequency === "recurrent") {
+                        return (amountRecurrent += item.amount)
+                    }
+                    if (item.frequency === "eventual") {
+                        return (amountEventual += item.amount)
+                    }
+                })
+
+            const total = amountEventual + amountRecurrent
+
+            return [
+                {
+                    name: "Recorrentes",
+                    amount: amountRecurrent,
+                    percent: Math.round((amountRecurrent / total) * 100 || 0),
+                    color: "#4E41F0"
+                },
+                {
+                    name: "Eventuais",
+                    amount: amountEventual,
+                    percent: Math.round((amountEventual / total) * 100 || 0),
+                    color: "#E44C4E"
                 }
-                if (item.frequency === "eventual") {
-                    return (amountEventual += item.amount)
-                }
-            })
-
-        const total = amountEventual + amountRecurrent
-
-        return [
-            {
-                name: "Recorrentes",
-                amount: amountRecurrent,
-                percent: Math.round((amountRecurrent / total) * 100 || 0),
-                color: "#4E41F0"
-            },
-            {
-                name: "Eventuais",
-                amount: amountEventual,
-                percent: Math.round((amountEventual / total) * 100 || 0),
-                color: "#E44C4E"
-            }
-        ]
-    }
+            ]
+        },
+        [monthSelected, yearSelected]
+    )
 
     const relationExpensevesRecurrentVersusEventual = useMemo(() => {
         return relationRecurrentVersusEventual(expenses)
