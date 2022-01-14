@@ -5,11 +5,21 @@ import { Anchor } from "./styles"
 interface IProps {
     href: string
     children?: ReactNode
+    onClick?: () => void
 }
 
-export default function MenuItem({ href, children }: IProps) {
+export default function MenuItem({
+    href,
+    children,
+    onClick = () => {}
+}: IProps) {
     return (
-        <Link to={href}>
+        <Link
+            onClick={e => {
+                onClick()
+            }}
+            to={href}
+        >
             <Anchor>{children}</Anchor>
         </Link>
     )

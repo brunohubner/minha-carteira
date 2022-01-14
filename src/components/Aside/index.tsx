@@ -7,8 +7,11 @@ import {
 } from "react-icons/md"
 import logoImg from "../../assets/logo.svg"
 import MenuItem from "../MenuItem"
+import { useAuth } from "../../context/AuthContext"
 
 export default function Aside() {
+    const { signOut } = useAuth()
+
     return (
         <Container>
             <Header>
@@ -16,7 +19,7 @@ export default function Aside() {
                 <Title>Minha Carteira</Title>
             </Header>
             <MenuContainer>
-                <MenuItem href="/dashboard">
+                <MenuItem href="/">
                     <MdDashboard></MdDashboard>Dashboard
                 </MenuItem>
                 <MenuItem href="/list/entry-balance">
@@ -25,7 +28,7 @@ export default function Aside() {
                 <MenuItem href="/list/exit-balance">
                     <MdArrowDownward></MdArrowDownward>Saídas
                 </MenuItem>
-                <MenuItem href="#">
+                <MenuItem onClick={signOut} href="#">
                     <MdExitToApp></MdExitToApp>Sair
                 </MenuItem>
             </MenuContainer>

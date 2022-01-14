@@ -7,8 +7,8 @@ export default function AppRoutes() {
     return (
         <Layout>
             <Routes>
-                <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/list/:type" element={<List />} />
+                <Route path="/" element={<Dashboard />} />
             </Routes>
         </Layout>
     )

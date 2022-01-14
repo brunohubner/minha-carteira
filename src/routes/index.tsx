@@ -1,12 +1,10 @@
 import { BrowserRouter } from "react-router-dom"
-import AppRoutes from "./app.routes"
-import AuthRoutes from "./auth.routes"
+import FilterRoutes from "./filter.routes"
 
 export default function Routes() {
     return (
         <BrowserRouter>
-            {/* <AppRoutes></AppRoutes> */}
-            <AuthRoutes></AuthRoutes>
+            <FilterRoutes />
         </BrowserRouter>
     )
 }
