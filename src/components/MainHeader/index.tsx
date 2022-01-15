@@ -29,8 +29,8 @@ export default function MainHeader() {
                 ></Toggle>
             </ToggleContainer>
             <Profile>
-                <Wellcome>Olá, </Wellcome>
-                <Username>Bruno Hubner {emoji}</Username>
+                <Wellcome>Seja bem-vindo, </Wellcome>
+                <Username>visitante {emoji}</Username>
             </Profile>
         </Container>
     )
