@@ -23,6 +23,14 @@ export const Header = styled.header`
     > h2 {
         font-size: 1.4rem;
     }
+
+    @media (max-width: 420px) {
+        flex-direction: column;
+
+        > h2 {
+            margin-bottom: 8px;
+        }
+    }
 `
 
 export const LegendContainer = styled.ul`
@@ -45,6 +53,13 @@ export const Legend = styled.li<ILegendProps>`
         height: 40px;
         border-radius: 5px;
         margin-right: 8px;
+    }
+
+    @media (max-width: 420px) {
+        > div {
+            width: 25px;
+            height: 25px;
+        }
     }
 `
 

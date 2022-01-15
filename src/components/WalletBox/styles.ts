@@ -30,6 +30,14 @@ export const Container = styled.section<IContainerProps>`
     > small {
         position: absolute;
         bottom: 10px;
-        z-index: 10;
+        z-index: 5;
+    }
+
+    @media (max-width: 420px) {
+        width: 100%;
+
+        > span {
+            font-size: 1.4rem;
+        }
     }
 `

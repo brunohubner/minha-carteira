@@ -10,8 +10,23 @@ export const Container = styled.header`
     border-bottom: 1px solid ${props => props.theme.colors.gray};
 `
 
-export const Profile = styled.div``
+export const ToggleContainer = styled.div`
+    @media (max-width: 420px) {
+        display: none;
+    }
+`
 
-export const Wellcome = styled.h3``
+export const Profile = styled.div`
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding-right: 10px;
+`
 
-export const Username = styled.span``
+export const Wellcome = styled.h3`
+    align-self: flex-end;
+`
+
+export const Username = styled.span`
+    align-self: flex-end;
+`

@@ -12,6 +12,11 @@ export const Container = styled.div`
     margin: 10px 0;
     padding: 20px 30px;
     display: flex;
+
+    @media (max-width: 420px) {
+        width: 100%;
+        height: 200px;
+    }
 `
 
 export const SideLeft = styled.aside`

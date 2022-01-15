@@ -2,7 +2,13 @@ import { useMemo } from "react"
 import { useTheme } from "../../context/ThemeContext"
 import emojis from "../../utils/emojis"
 import Toggle from "../Toggle"
-import { Container, Profile, Username, Wellcome } from "./styles"
+import {
+    Container,
+    Profile,
+    Username,
+    Wellcome,
+    ToggleContainer
+} from "./styles"
 
 export default function MainHeader() {
     const { isDarkTheme, toggleTheme } = useTheme()
@@ -14,12 +20,14 @@ export default function MainHeader() {
 
     return (
         <Container>
-            <Toggle
-                labelLeft="Light"
-                labelRight="Dark"
-                checked={isDarkTheme}
-                onChange={toggleTheme}
-            ></Toggle>
+            <ToggleContainer>
+                <Toggle
+                    labelLeft="Light"
+                    labelRight="Dark"
+                    checked={isDarkTheme}
+                    onChange={toggleTheme}
+                ></Toggle>
+            </ToggleContainer>
             <Profile>
                 <Wellcome>Olá, </Wellcome>
                 <Username>Bruno Hubner {emoji}</Username>

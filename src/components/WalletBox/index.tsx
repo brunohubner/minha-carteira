@@ -35,9 +35,9 @@ export default function WalletBox({
         <Container color={color}>
             <span>{title}</span>
             <h1>
+                <strong>R$&nbsp;</strong>
                 <CountUp
                     end={amount}
-                    prefix="R$ "
                     separator="."
                     decimal=","
                     decimals={2}

@@ -1,20 +1,38 @@
-import { Container, Header, LogoImg, Title, MenuContainer } from "./styles"
+import {
+    Container,
+    Header,
+    LogoImg,
+    Title,
+    MenuContainer,
+    ToggleMenu,
+    ToggleContainer
+} from "./styles"
 import {
     MdArrowDownward,
     MdArrowUpward,
     MdDashboard,
-    MdExitToApp
+    MdExitToApp,
+    MdMenu,
+    MdClose
 } from "react-icons/md"
 import logoImg from "../../assets/logo.svg"
 import MenuItem from "../MenuItem"
 import { useAuth } from "../../context/AuthContext"
+import { useState } from "react"
+import Toggle from "../Toggle"
+import { useTheme } from "../../context/ThemeContext"
 
 export default function Aside() {
+    const [menuIsOpen, setMenuIsOpen] = useState(false)
     const { signOut } = useAuth()
+    const { isDarkTheme, toggleTheme } = useTheme()
 
     return (
-        <Container>
+        <Container menuIsOpen={menuIsOpen}>
             <Header>
+                <ToggleMenu onClick={() => setMenuIsOpen(old => !old)}>
+                    {menuIsOpen ? <MdClose /> : <MdMenu />}
+                </ToggleMenu>
                 <LogoImg src={logoImg} alt="Logo Minha Carteira"></LogoImg>
                 <Title>Minha Carteira</Title>
             </Header>
@@ -32,6 +50,10 @@ export default function Aside() {
                     <MdExitToApp></MdExitToApp>Sair
                 </MenuItem>
             </MenuContainer>
+            <ToggleContainer menuIsOpen={menuIsOpen}>
+                <span>Alterar Tema</span>
+                <Toggle checked={isDarkTheme} onChange={toggleTheme}></Toggle>
+            </ToggleContainer>
         </Container>
     )
 }
